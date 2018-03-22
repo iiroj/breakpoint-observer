@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "tslint-config-standard",
+    "tslint-react"
+  ],
+  "rules": {
+    "no-unused-variable": true,
+    "jsx-no-multiline-js": false,
+    "quotemark": [
+      true, 
+      "single",
+      "jsx-single"
+    ]
+  }
+}

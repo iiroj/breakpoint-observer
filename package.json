@@ -1,0 +1,51 @@
+{
+  "name": "breakpoint-observer",
+  "version": "0.1.0",
+  "description": "A React Component for rendering based on breakpoints or window width",
+  "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
+  "licence": "MIT",
+  "homepage": "https://github.com/iiroj/breakpoint-observer",
+  "repository": "github:iiroj/breakpoint-observer",
+  "bugs": "https://github.com/iiroj/breakpoint-observer/issues",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "start": "start-storybook -p 8080 -c .storybook",
+    "prebuild": "rimraf lib",
+    "build": "babel src --out-dir lib --extensions '.ts,.tsx'",
+    "lint": "tslint src",
+    "typecheck": "tsc"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/node": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-react": "^7.0.0-beta.42",
+    "@babel/preset-stage-3": "^7.0.0-beta.42",
+    "@babel/preset-typescript": "^7.0.0-beta.42",
+    "@babel/register": "^7.0.0-beta.42",
+    "@storybook/react": "^3.3.15",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "@types/storybook__react": "^3.0.7",
+    "babel-loader": "^8.0.0-beta",
+    "babel-plugin-module-resolver": "^3.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-react": "^3.5.1",
+    "typescript": "^2.7.2"
+  },
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  }
+}
