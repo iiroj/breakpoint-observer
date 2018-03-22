@@ -1,20 +1,21 @@
 {
   "name": "breakpoint-observer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A React Component for rendering based on breakpoints or window width",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "licence": "MIT",
   "homepage": "https://github.com/iiroj/breakpoint-observer",
   "repository": "github:iiroj/breakpoint-observer",
   "bugs": "https://github.com/iiroj/breakpoint-observer/issues",
-  "main": "lib/index.js",
+  "main": "index.js",
+  "typings": "./src/index.tsx",
   "files": [
-    "lib"
+    "src"
   ],
   "scripts": {
     "start": "start-storybook -p 8080 -c .storybook",
-    "prebuild": "rimraf lib",
-    "build": "babel src --out-dir lib --extensions '.ts,.tsx'",
+    "prebuild": "rimraf ./index.js",
+    "build": "babel src --out-dir . --extensions '.ts,.tsx'",
     "lint": "tslint src",
     "typecheck": "tsc"
   },

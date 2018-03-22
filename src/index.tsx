@@ -1,27 +1,27 @@
 import * as React from 'react'
 
-interface BreakpointConfig {
-  [key: string]: number
+export interface IBreakpointConfig {
+  readonly [key: string]: number
 }
 
-interface ChildFunc {
+export interface IChildFunc {
+  readonly breakpoint?: number | string,
+  readonly width?: number
+}
+
+export interface IProps {
+  readonly breakpoints?: IBreakpointConfig,
+  readonly children: (props: IChildFunc) => React.ReactNode,
+  readonly defaultBreakpoint?: number | string
+}
+
+export interface IState {
   breakpoint?: number | string,
-  width?: number
-}
-
-interface Props {
-  breakpoints?: BreakpointConfig,
-  children: (props: ChildFunc) => React.ReactNode,
-  defaultBreakpoint?: number | string
-}
-
-interface State {
-  breakpoint?: number | string,
-  breakpoints: BreakpointConfig,
+  breakpoints: IBreakpointConfig,
   width: number | null,
 }
 
-export default class BreakpointObserver extends React.PureComponent<Props, State> {
+export default class BreakpointObserver extends React.PureComponent<IProps, IState> {
   constructor (props) {
     super(props)
 
