@@ -35,6 +35,10 @@ export default class BreakpointObserver extends React.PureComponent<Props, State
   componentWillMount () {
     if (window) {
       this.getCurrentWidth()
+
+      if (this.props.breakpoints) {
+        this.listenForBreakpoints()
+      }
     }
   }
 
@@ -44,7 +48,7 @@ export default class BreakpointObserver extends React.PureComponent<Props, State
       window.addEventListener('resize', this.debouncedGetCurrentWidth)
 
       if (this.props.breakpoints) {
-        this.addBreakpointListener()
+        this.listenForBreakpoints()
       }
     }
   }
@@ -53,23 +57,45 @@ export default class BreakpointObserver extends React.PureComponent<Props, State
     window.removeEventListener('resize', this.debouncedGetCurrentWidth)
   }
 
-  getCurrentWidth = () => {
-    if (window) this.setState({ width: window.innerWidth })
-  }
+  getCurrentWidth = () => this.setState({ width: window.innerWidth })
 
   debouncedGetCurrentWidth = () => setTimeout(this.getCurrentWidth, 100)
 
-  addBreakpointListener = () => {
+  listenForBreakpoints () {
     const { breakpoints } = this.props
+    const sortedBreakpoints = Object.keys(breakpoints)
+      .sort((a, b) => breakpoints[b] - breakpoints[a])
 
-    console.log(Object.keys(breakpoints)
-    .sort((a, b) => breakpoints[a] - breakpoints[b]))
+    let query
 
-    Object.keys(breakpoints)
-      .sort((a, b) => breakpoints[a] - breakpoints[b])
-      .forEach((breakpoint, index) => {
-        const minWidth = breakpoints[breakpoint]
+    sortedBreakpoints.forEach((breakpoint, index) => {
+      const minWidth = breakpoints[breakpoint]
+      const nextWidth = sortedBreakpoints[index - 1]
+
+      if (minWidth >= 0) {
+        query = `(min-width: ${minWidth}px)`
+      }
+
+      if (typeof nextWidth !== 'undefined') {
+        if (query) {
+          query += ' and '
+        }
+
+        query += `(max-width: ${breakpoints[nextWidth] - 1}px)`
+      }
+
+      let mediaQuery = window.matchMedia(query)
+
+      if (mediaQuery.matches) {
+        this.setState({ breakpoint: Object.entries(breakpoints).find(i => i[1] === minWidth)[0] })
+      }
+
+      mediaQuery.addListener(() => {
+        if (mediaQuery.matches) {
+          this.setState({ breakpoint: Object.entries(breakpoints).find(i => i[1] === minWidth)[0] })
+        }
       })
+    })
   }
 
   render () {

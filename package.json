@@ -1,6 +1,6 @@
 {
   "name": "breakpoint-observer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A React Component for rendering based on breakpoints or window width",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "licence": "MIT",
