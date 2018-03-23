@@ -6,7 +6,8 @@ export interface IBreakpointConfig {
 
 export interface IProps {
   readonly breakpoints?: IBreakpointConfig;
-  readonly children: (props?: string) => React.ReactNode;
+  readonly callback?: (props?: string) => any;
+  readonly children?: (props?: string) => React.ReactNode;
   readonly defaultBreakpoint?: string;
 }
 
@@ -18,12 +19,20 @@ export default class BreakpointObserver extends React.Component<
   IProps,
   IState
 > {
+  public callback?: (props?: string) => any;
+
   public constructor(props) {
     super(props);
 
+    const { callback, defaultBreakpoint } = this.props;
+
     this.state = {
-      breakpoint: this.props.defaultBreakpoint
+      breakpoint: defaultBreakpoint
     };
+
+    if (callback && typeof callback === 'function') {
+      this.callback = callback;
+    }
   }
 
   public componentWillMount() {
@@ -50,11 +59,12 @@ export default class BreakpointObserver extends React.Component<
 
   private updateState({ matches }, width) {
     if (matches) {
-      this.setState({
-        breakpoint: Object.entries(this.props.breakpoints)
-          .find(i => i[1] === width)[0]
-          .toString()
-      });
+      const breakpoint = Object.entries(this.props.breakpoints)
+        .find(i => i[1] === width)[0]
+        .toString();
+
+      this.setState({ breakpoint });
+      this.callback && this.callback(breakpoint);
     }
   }
 
