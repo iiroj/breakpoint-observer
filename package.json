@@ -1,7 +1,7 @@
 {
   "name": "breakpoint-observer",
-  "version": "0.2.1",
-  "description": "A React Component for rendering based on breakpoints or window width",
+  "version": "0.3.0",
+  "description": "A React Component for rendering based on breakpoints",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "licence": "MIT",
   "homepage": "https://github.com/iiroj/breakpoint-observer",
@@ -38,15 +38,29 @@
     "@types/storybook__react": "^3.0.7",
     "babel-loader": "^8.0.0-beta",
     "babel-plugin-module-resolver": "^3.1.0",
+    "prettier": "^1.11.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
     "tslint-config-standard": "^7.0.0",
+    "tslint-plugin-prettier": "^1.3.0",
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0"
-  }
+  },
+  "keywords": [
+    "babel",
+    "breakpoint",
+    "matchMedia",
+    "react",
+    "responsive",
+    "storybook",
+    "typescript",
+    "viewport",
+    "window.matchMedia"
+  ]
 }

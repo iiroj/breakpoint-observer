@@ -1,110 +1,92 @@
-import * as React from 'react'
+import * as React from 'react';
 
 export interface IBreakpointConfig {
-  readonly [key: string]: number
-}
-
-export interface IChildFunc {
-  readonly breakpoint?: number | string,
-  readonly width?: number
+  readonly [key: string]: number;
 }
 
 export interface IProps {
-  readonly breakpoints?: IBreakpointConfig,
-  readonly children: (props: IChildFunc) => React.ReactNode,
-  readonly defaultBreakpoint?: number | string
+  readonly breakpoints?: IBreakpointConfig;
+  readonly children: (props?: string) => React.ReactNode;
+  readonly defaultBreakpoint?: string;
 }
 
 export interface IState {
-  breakpoint?: number | string,
-  breakpoints: IBreakpointConfig,
-  width: number | null,
+  breakpoint?: string;
 }
 
-export default class BreakpointObserver extends React.PureComponent<IProps, IState> {
-  constructor (props) {
-    super(props)
+export default class BreakpointObserver extends React.Component<
+  IProps,
+  IState
+> {
+  public constructor(props) {
+    super(props);
 
     this.state = {
-      breakpoint: props.defaultBreakpoint,
-      breakpoints: props.breakpoints,
-      width: null
+      breakpoint: this.props.defaultBreakpoint
+    };
+  }
+
+  public componentWillMount() {
+    if (window && this.props.breakpoints) {
+      this.observe();
     }
   }
 
-  componentWillMount () {
-    if (window) {
-      this.getCurrentWidth()
+  public shouldComponentUpdate(nextProps: IProps, nextState: IState): boolean {
+    return (
+      this.state.breakpoint !== nextState.breakpoint ||
+      this.props.breakpoints !== nextProps.breakpoints ||
+      this.props.children !== nextProps.children
+    );
+  }
 
-      if (this.props.breakpoints) {
-        this.listenForBreakpoints()
-      }
+  public render() {
+    const { children } = this.props;
+
+    if (typeof children !== 'function') return null;
+
+    return children(this.state.breakpoint);
+  }
+
+  private updateState({ matches }, width) {
+    if (matches) {
+      this.setState({
+        breakpoint: Object.entries(this.props.breakpoints)
+          .find(i => i[1] === width)[0]
+          .toString()
+      });
     }
   }
 
-  componentDidMount () {
-    if (window) {
-      this.getCurrentWidth()
-      window.addEventListener('resize', this.debouncedGetCurrentWidth)
+  private observe() {
+    const { breakpoints } = this.props;
+    const sortedBreakpoints = Object.keys(breakpoints).sort(
+      (a, b) => breakpoints[b] - breakpoints[a]
+    );
 
-      if (this.props.breakpoints) {
-        this.listenForBreakpoints()
-      }
-    }
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('resize', this.debouncedGetCurrentWidth)
-  }
-
-  getCurrentWidth = () => this.setState({ width: window.innerWidth })
-
-  debouncedGetCurrentWidth = () => setTimeout(this.getCurrentWidth, 100)
-
-  listenForBreakpoints () {
-    const { breakpoints } = this.props
-    const sortedBreakpoints = Object.keys(breakpoints)
-      .sort((a, b) => breakpoints[b] - breakpoints[a])
-
-    let query
+    let query;
 
     sortedBreakpoints.forEach((breakpoint, index) => {
-      const minWidth = breakpoints[breakpoint]
-      const nextWidth = sortedBreakpoints[index - 1]
+      const minWidth = breakpoints[breakpoint];
+      const nextWidth = sortedBreakpoints[index - 1];
 
       if (minWidth >= 0) {
-        query = `(min-width: ${minWidth}px)`
+        query = `(min-width: ${minWidth}px)`;
       }
 
       if (typeof nextWidth !== 'undefined') {
         if (query) {
-          query += ' and '
+          query += ' and ';
         }
 
-        query += `(max-width: ${breakpoints[nextWidth] - 1}px)`
+        query += `(max-width: ${breakpoints[nextWidth] - 1}px)`;
       }
 
-      let mediaQuery = window.matchMedia(query)
+      let mediaQuery = window.matchMedia(query);
 
-      if (mediaQuery.matches) {
-        this.setState({ breakpoint: Object.entries(breakpoints).find(i => i[1] === minWidth)[0] })
-      }
+      this.updateState(mediaQuery, minWidth);
 
-      mediaQuery.addListener(() => {
-        if (mediaQuery.matches) {
-          this.setState({ breakpoint: Object.entries(breakpoints).find(i => i[1] === minWidth)[0] })
-        }
-      })
-    })
-  }
-
-  render () {
-    const { children } = this.props
-
-    if (typeof children !== 'function') return null
-
-    const { breakpoint, width } = this.state
-
-    return this.props.children({ breakpoint, width })
+      mediaQuery.addListener(() => this.updateState(mediaQuery, minWidth));
+    });
   }
 }

@@ -1,15 +1,19 @@
 {
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
   "extends": [
     "tslint-config-standard",
-    "tslint-react"
+    "tslint-react",
+    "tslint-config-prettier"
   ],
   "rules": {
     "no-unused-variable": true,
     "jsx-no-multiline-js": false,
-    "quotemark": [
-      true, 
-      "single",
-      "jsx-single"
+    "prettier": [
+      true, {
+        "singleQuote": true
+      }
     ]
   }
 }
