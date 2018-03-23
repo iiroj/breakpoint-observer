@@ -9,7 +9,11 @@ A React Component for rendering based on breakpoints.
 
 ## Usage
 
-Using `breakpoint-observer` is simple. Import it as a React component and wrap it around some content. Its children should be a function that receives the current breakpoint from the specified breakpoint object. The current breakpoint value is a string that can be used for anything, for example conditional rendering of different child components!
+Using `breakpoint-observer` is simple. You can use it with a render prop, a child function that will receive the current breakpoint. Alternatively, you can skip rendering children and supply it a callback function.
+
+### Render Prop
+
+Import `breakpoint-observer` as a React component and wrap it around some content. Its children should be a function that receives the current breakpoint from the specified breakpoint object. The current breakpoint value is a string that can be used for anything, for example conditional rendering of different child components!
 
 ```javascript
 import React from 'react';
@@ -24,6 +28,28 @@ import BreakpointObserver from 'breakpoint-observer';
   {breakpoint => <p>The current breakpoint is {breakpoint}!</p>}
 </BreakpointObserver>
 ```
+
+### Callback Function
+
+Import `breakpoint-observer` as a React component and give it a callback function. The function will receive the current breakpoint from the specified breakpoint object. The current breakpoint value is a string that can be used for anything, for example store it in Redux!
+
+```javascript
+import React from 'react';
+import BreakpointObserver from 'breakpoint-observer';
+
+const myCallback = breakpoint =>
+    console.log(`The current breakpoint is ${breakpoint}!`);
+
+...
+
+<BreakpointObserver
+  breakpoints={{ mobile: 0, tablet: 768 }}
+  callback={myCallback}
+  defaultBreakpoint={'tablet'}
+/>
+```
+
+### SSR
 
 For server-side rendering a `defaultBreakpoint` is supported. This value is returned when there is no window to calculate actual breakpoints from.
 
