@@ -13,6 +13,12 @@ export interface IProps {
 
 export interface IState {
   breakpoint?: string;
+  mediaQueries?: Array<{
+    id: string;
+    maxWidth?: number;
+    minWidth: number;
+    query: string;
+  }>;
 }
 
 export default class BreakpointObserver extends React.Component<
@@ -24,10 +30,11 @@ export default class BreakpointObserver extends React.Component<
   public constructor(props) {
     super(props);
 
-    const { callback, defaultBreakpoint } = this.props;
+    const { breakpoints, callback, defaultBreakpoint } = this.props;
 
     this.state = {
-      breakpoint: defaultBreakpoint
+      breakpoint: defaultBreakpoint,
+      mediaQueries: this.createMediaQueries(breakpoints)
     };
 
     if (callback && typeof callback === 'function') {
@@ -37,13 +44,21 @@ export default class BreakpointObserver extends React.Component<
 
   public componentWillMount() {
     if (window && this.props.breakpoints) {
-      this.observe();
+      this.addMediaQueryListener();
+    }
+  }
+
+  public componentWillReceiveProps({ breakpoints }) {
+    if (breakpoints !== this.props.breakpoints) {
+      const newMediaQueries = this.createMediaQueries(breakpoints);
+      this.setState({ mediaQueries: newMediaQueries });
     }
   }
 
   public shouldComponentUpdate(nextProps: IProps, nextState: IState): boolean {
     return (
       this.state.breakpoint !== nextState.breakpoint ||
+      this.state.mediaQueries !== nextState.mediaQueries ||
       this.props.breakpoints !== nextProps.breakpoints ||
       this.props.children !== nextProps.children
     );
@@ -57,46 +72,53 @@ export default class BreakpointObserver extends React.Component<
     return children(this.state.breakpoint);
   }
 
-  private updateState({ matches }, width) {
-    if (matches) {
-      const breakpoint = Object.entries(this.props.breakpoints)
-        .find(i => i[1] === width)[0]
-        .toString();
-
-      this.setState({ breakpoint });
-      this.callback && this.callback(breakpoint);
-    }
-  }
-
-  private observe() {
-    const { breakpoints } = this.props;
+  private createMediaQueries(breakpoints) {
     const sortedBreakpoints = Object.keys(breakpoints).sort(
       (a, b) => breakpoints[b] - breakpoints[a]
     );
 
-    let query;
-
-    sortedBreakpoints.forEach((breakpoint, index) => {
+    return sortedBreakpoints.map((breakpoint, index) => {
+      let query: string;
       const minWidth = breakpoints[breakpoint];
-      const nextWidth = sortedBreakpoints[index - 1];
+      const maxWidth = sortedBreakpoints[index - 1];
 
       if (minWidth >= 0) {
         query = `(min-width: ${minWidth}px)`;
       }
 
-      if (typeof nextWidth !== 'undefined') {
+      if (typeof maxWidth !== 'undefined') {
         if (query) {
           query += ' and ';
         }
-
-        query += `(max-width: ${breakpoints[nextWidth] - 1}px)`;
+        query += `(max-width: ${breakpoints[maxWidth] - 1}px)`;
       }
 
-      let mediaQuery = window.matchMedia(query);
-
-      this.updateState(mediaQuery, minWidth);
-
-      mediaQuery.addListener(() => this.updateState(mediaQuery, minWidth));
+      return {
+        id: Object.entries(this.props.breakpoints)
+          .find(i => i[1] === minWidth)[0]
+          .toString(),
+        maxWidth: maxWidth && breakpoints[maxWidth] - 1,
+        minWidth,
+        query
+      };
     });
+  }
+
+  private addMediaQueryListener() {
+    const { mediaQueries } = this.state;
+
+    mediaQueries.forEach(({ id, query }) => {
+      const mediaQuery = window.matchMedia(query);
+
+      this.updateBreakpoint(id, mediaQuery);
+      mediaQuery.addListener(() => this.updateBreakpoint(id, mediaQuery));
+    });
+  }
+
+  private updateBreakpoint(id, { matches }) {
+    if (matches) {
+      this.setState({ breakpoint: id });
+      this.callback && this.callback(id);
+    }
   }
 }
