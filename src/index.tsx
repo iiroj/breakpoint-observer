@@ -42,15 +42,15 @@ export default class BreakpointObserver extends React.Component<
     }
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     if (window && this.props.breakpoints) {
       this.addMediaQueryListener();
     }
   }
 
-  public componentWillReceiveProps({ breakpoints }) {
+  public componentDidUpdate({ breakpoints }) {
     if (breakpoints !== this.props.breakpoints) {
-      const newMediaQueries = this.createMediaQueries(breakpoints);
+      const newMediaQueries = this.createMediaQueries(this.props.breakpoints);
       this.setState({ mediaQueries: newMediaQueries });
     }
   }
