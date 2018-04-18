@@ -13,11 +13,14 @@
     "@babel/typescript"
   ],
   "plugins": [
-    ["module-resolver", {
-      "root": ["."],
-      "alias": {
-        "breakpoint-observer": "./src"
+    [
+      "module-resolver",
+      {
+        "root": ".",
+        "alias": {
+          "breakpoint-observer": "./src"
+        }
       }
-    }]
+    ]
   ]
 }

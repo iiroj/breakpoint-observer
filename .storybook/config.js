@@ -1,9 +1,4 @@
 import '@babel/register';
-
 import { configure } from '@storybook/react';
 
-function loadStories() {
-  require("../stories.tsx");
-}
-
-configure(loadStories, module);
+configure(() => require("../stories.tsx"), module);

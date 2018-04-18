@@ -5,23 +5,18 @@
     "baseUrl": ".",
     "declaration": true,
     "jsx": "react",
-    "lib": [ "dom", "es6" ],
+    "lib": ["dom", "es6"],
+    "moduleResolution": "node",
     "noEmit": true,
     "noResolve": false,
-    "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "pretty": true,
     "skipLibCheck": true,
-    "strict": true,
     "sourceMap": true,
-    "target": "es6",
+    "strict": true,
+    "target": "es6"
   },
-  "include": [
-    "./index.tsx"    
-  ],
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*"
-  ]
+  "include": ["./index.tsx"],
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
