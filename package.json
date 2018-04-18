@@ -8,9 +8,9 @@
   "repository": "github:iiroj/breakpoint-observer",
   "bugs": "https://github.com/iiroj/breakpoint-observer/issues",
   "main": "index.js",
-  "typings": "./src/index.tsx",
+  "typings": "index.tsx",
   "files": [
-    "src"
+    "index.tsx"
   ],
   "scripts": {
     "start": "start-storybook -p 8080 -c .storybook",
