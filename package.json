@@ -1,6 +1,6 @@
 {
   "name": "breakpoint-observer",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "A React Component for rendering based on breakpoints",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "licence": "MIT",
@@ -15,9 +15,9 @@
   "scripts": {
     "start": "start-storybook -p 8080 -c .storybook",
     "prebuild": "rimraf ./index.js",
-    "build": "babel src --out-dir . --extensions '.ts,.tsx'",
-    "lint": "tslint src",
-    "typecheck": "tsc"
+    "build": "babel ./index.tsx --out-file ./index.js",
+    "lint": "tslint -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "react": "^16.3.2",

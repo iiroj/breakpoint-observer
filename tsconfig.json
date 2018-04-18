@@ -5,8 +5,7 @@
     "baseUrl": ".",
     "declaration": true,
     "jsx": "react",
-    "lib": [ "dom", "es2017" ],
-    "module": "es6",
+    "lib": [ "dom", "es6" ],
     "noEmit": true,
     "noResolve": false,
     "moduleResolution": "node",
@@ -14,11 +13,13 @@
     "noUnusedParameters": true,
     "pretty": true,
     "skipLibCheck": true,
-    "paths": {
-      "breakpoint-observer": ["src"]
-    },
-    "sourceMap": true
+    "strict": true,
+    "sourceMap": true,
+    "target": "es6",
   },
+  "include": [
+    "./index.tsx"    
+  ],
   "exclude": [
     "node_modules",
     "**/node_modules/*"
