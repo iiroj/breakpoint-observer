@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - MediaQuery listeners are removed on `componentWillUnmount`
 
+## [0.7.2] - 2018-04-19
+### Fixed
+- Updated changelog
+
+## [0.7.1] - 2018-04-19
+### Changed
+- The production package is now built with the TypeScript Compiler
+
 ## [0.7.0] - 2018-04-18
 ### Added
 - The render prop and callback function now receive the current breakpoint's minWidth and maxWidth as the second and third parameter, respectively.
