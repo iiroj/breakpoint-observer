@@ -1,6 +1,6 @@
 {
   "name": "breakpoint-observer",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A React Component for rendering based on breakpoints",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "licence": "MIT",
@@ -8,14 +8,15 @@
   "repository": "github:iiroj/breakpoint-observer",
   "bugs": "https://github.com/iiroj/breakpoint-observer/issues",
   "main": "index.js",
-  "typings": "index.tsx",
+  "typings": "index.d.ts",
   "files": [
-    "index.tsx"
+    "index.js",
+    "index.d.ts",
+    "index.js.map"
   ],
   "scripts": {
     "start": "start-storybook -p 8080 -c .storybook",
-    "prebuild": "rimraf ./index.js",
-    "build": "babel ./index.tsx --out-file ./index.js",
+    "build": "tsc -p tsconfig.json --outDir .",
     "lint": "tslint -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
@@ -32,7 +33,7 @@
     "@babel/preset-stage-3": "^7.0.0-beta.44",
     "@babel/preset-typescript": "^7.0.0-beta.44",
     "@babel/register": "^7.0.0-beta.44",
-    "@storybook/react": "^3.4.1",
+    "@storybook/react": "^3.4.2",
     "@types/react": "^16.3.11",
     "@types/react-dom": "^16.0.5",
     "@types/storybook__react": "^3.0.7",
@@ -42,7 +43,6 @@
     "prettier": "^1.12.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.10.0",
     "tslint-config-standard": "^7.0.0",

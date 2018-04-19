@@ -1,22 +1,19 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": true,
     "jsx": "react",
     "lib": ["dom", "es6"],
+    "module": "amd",
     "moduleResolution": "node",
-    "noEmit": true,
     "noResolve": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "pretty": true,
-    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es6"
+    "target": "es5"
   },
-  "include": ["./index.tsx"],
-  "exclude": ["node_modules", "**/node_modules/*"]
+  "include": ["./index.tsx"]
 }
