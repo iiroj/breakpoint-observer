@@ -16,9 +16,8 @@
   ],
   "scripts": {
     "start": "start-storybook -p 8080 -c .storybook",
-    "build": "tsc -p tsconfig.json --outDir .",
     "lint": "tslint -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "build": "tsc -p tsconfig.json --outDir ."
   },
   "peerDependencies": {
     "react": "^16.3.2",
