@@ -9,11 +9,11 @@ A React Component for rendering based on breakpoints.
 
 ## Usage
 
-Using `breakpoint-observer` is simple. You can use it with a render prop, a child function that will receive the current breakpoint. Alternatively, you can skip rendering children and supply it a callback function.
+Using `breakpoint-observer` is simple. You can use it with a render prop, a child function that will receive the current breakpoint, minWidth and maxWidth. Alternatively, you can skip rendering children and supply it a callback function.
 
 ### Render Prop
 
-Import `breakpoint-observer` as a React component and wrap it around some content. Its children should be a function that receives the current breakpoint from the specified breakpoint object. The current breakpoint value is a string that can be used for anything, for example conditional rendering of different child components!
+Import `breakpoint-observer` as a React component and wrap it around some content. Its children should be a function that receives the current breakpoint, and its minWidth (number) and maxWidth (number), from the specified breakpoint object. These values can be used for anything, for example conditional rendering of different child components!
 
 ```javascript
 import React from 'react';
@@ -26,6 +26,18 @@ import BreakpointObserver from 'breakpoint-observer';
   defaultBreakpoint={'tablet'}
 >
   {breakpoint => <p>The current breakpoint is {breakpoint}!</p>}
+</BreakpointObserver>
+
+...
+
+<BreakpointObserver breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}>
+  {(_unused, minWidth) => <p>Are we in tablet layout? The answer is {minWidth >= 768 ? 'yes' : 'no'}</p>}
+</BreakpointObserver>
+
+...
+
+<BreakpointObserver breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}>
+  {(_unused, _unused2, maxWidth) => <p>Are we in mobile layout? The answer is {maxWidth < 768 ? 'yes' : 'no'}</p>}
 </BreakpointObserver>
 ```
 

@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - MediaQuery listeners are removed on `componentWillUnmount`
 
+## [0.7.5] - 2018-04-27
+### Changed
+- Update readme
+
 ## [0.7.4] - 2018-04-19
 ### Changed
 - Update devDependencies
