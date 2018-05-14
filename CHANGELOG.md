@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - MediaQuery listeners are removed on `componentWillUnmount`
 
+## [0.7.6] - 2018-05-14
+### Changed
+- Update packages
+- Migrate `.babelrc` to `babel.config.js`
+ 
 ## [0.7.5] - 2018-04-27
 ### Changed
 - Update readme
