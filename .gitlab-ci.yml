@@ -20,5 +20,3 @@ build:
 cache:
   paths:
     - node_modules
-    - $HOME/.npm
-    - $(npm root -g)
