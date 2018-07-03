@@ -1,14 +1,24 @@
 image: node:alpine
 
 stages:
+  - install
+  - test
   - build
 
-before_script:
-  - npm i -g npm
-  - npm ci
+install:
+  stage: install
+  script:
+    - npm ci
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - node_modules
+  cache:
+    paths:
+      - node_modules
 
 lint:
-  stage: build
+  stage: test
   script:
     - npm run lint
 
@@ -16,7 +26,3 @@ build:
   stage: build
   script:
     - npm run build -- --noEmit
-
-cache:
-  paths:
-    - node_modules
