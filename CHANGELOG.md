@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - MediaQuery listeners are removed on `componentWillUnmount`
 
+## [0.8.0] - 2018-07-31
+### Changed
+- Do not include sourcemaps
+- Update packages
+- Build with Typescript 3.0.1
+- `children` is a function that can return `any`, not just `React.ReactNode`
+- Increase prettier printWidth to 120
+
 ## [0.7.12] - 2018-07-02
 ### Changed
 - Update packages

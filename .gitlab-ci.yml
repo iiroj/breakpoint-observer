@@ -25,4 +25,4 @@ lint:
 build:
   stage: build
   script:
-    - npm run build -- --noEmit
+    - npm run build -- --dry

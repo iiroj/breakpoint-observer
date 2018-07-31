@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 export interface IBreakpointConfig {
   readonly [key: string]: number;
@@ -6,16 +6,8 @@ export interface IBreakpointConfig {
 
 export interface IProps {
   readonly breakpoints: IBreakpointConfig;
-  readonly callback?: (
-    id?: string,
-    minWidth?: number,
-    maxWidth?: number
-  ) => any;
-  readonly children?: (
-    id?: string,
-    minWidth?: number,
-    maxWidth?: number
-  ) => React.ReactNode;
+  readonly callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
+  readonly children?: (id?: string, minWidth?: number, maxWidth?: number) => any;
   readonly defaultBreakpoint?: string;
 }
 
@@ -40,9 +32,7 @@ export default class BreakpointObserver extends Component<IProps, IState> {
     const { breakpoints, callback, defaultBreakpoint } = this.props;
 
     const mediaQueries = this.createMediaQueries(breakpoints);
-    const breakpoint =
-      mediaQueries &&
-      mediaQueries.find(query => query.id === defaultBreakpoint);
+    const breakpoint = mediaQueries && mediaQueries.find(query => query.id === defaultBreakpoint);
 
     this.state = {
       breakpoint,
@@ -99,9 +89,7 @@ export default class BreakpointObserver extends Component<IProps, IState> {
       return undefined;
     }
 
-    const sortedBreakpoints = Object.keys(breakpoints).sort(
-      (a, b) => breakpoints[b] - breakpoints[a]
-    );
+    const sortedBreakpoints = Object.keys(breakpoints).sort((a, b) => breakpoints[b] - breakpoints[a]);
 
     return sortedBreakpoints.map((breakpoint, index) => {
       let query = '';
@@ -136,11 +124,8 @@ export default class BreakpointObserver extends Component<IProps, IState> {
 
     mediaQueries.forEach(({ id, minWidth, maxWidth, query }) => {
       const mediaQuery = window.matchMedia(query);
-
       this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery);
-      mediaQuery.addListener(() =>
-        this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery)
-      );
+      mediaQuery.addListener(() => this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery));
     });
   }
 
