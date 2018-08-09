@@ -1,6 +1,28 @@
-# breakpoint-observer
-
-A React Component for rendering based on breakpoints.
+<div align="center">
+  <h1 align="center">breakpoint-observer</h1>
+  <p>A React Component for rendering based on breakpoints.</p>
+  <a href="https://www.npmjs.com/package/breakpoint-observer"><strong>npm</strong></a> ·
+  <a href="https://gitlab.com/iiroj/breakpoint-observer"><strong>GitLab</strong></a>
+  <br/>
+  <br/>
+  <a href="https://www.npmjs.com/package/breakpoint-observer">
+    <img src="https://img.shields.io/npm/v/breakpoint-observer.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/breakpoint-observer">
+    <img src="https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/breakpoint-observer/pipelines/">
+    <img src="https://img.shields.io/badge/GitLab-Pipeline-lightgrey.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/breakpoint-observer/blob/master/package.json">
+    <img src="https://img.shields.io/david/iiroj/breakpoint-observer.svg?style=flat-square">
+  </a>
+  <a href="https://gitlab.com/iiroj/breakpoint-observer/blob/master/package.json">
+    <img src="https://img.shields.io/david/dev/iiroj/breakpoint-observer.svg?style=flat-square">
+  </a>
+  <br/>
+  <br/>
+</div>
 
 ## Usage
 
