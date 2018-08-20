@@ -6,19 +6,19 @@
   <br/>
   <br/>
   <a href="https://www.npmjs.com/package/breakpoint-observer">
-    <img src="https://img.shields.io/npm/v/breakpoint-observer.svg?style=flat-square">
+    <img src="https://img.shields.io/npm/v/breakpoint-observer.svg">
   </a>
   <a href="https://gitlab.com/iiroj/breakpoint-observer">
-    <img src="https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg?style=flat-square">
+    <img src="https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg">
   </a>
-  <a href="https://gitlab.com/iiroj/breakpoint-observer/pipelines/">
-    <img src="https://img.shields.io/badge/GitLab-Pipeline-lightgrey.svg?style=flat-square">
-  </a>
-  <a href="https://gitlab.com/iiroj/breakpoint-observer/blob/master/package.json">
-    <img src="https://img.shields.io/david/iiroj/breakpoint-observer.svg?style=flat-square">
+  <a href="https://gitlab.com/iiroj/breakpoint-observer/commits/master">
+    <img alt="pipeline status" src="https://gitlab.com/iiroj/breakpoint-observer/badges/master/pipeline.svg" />
   </a>
   <a href="https://gitlab.com/iiroj/breakpoint-observer/blob/master/package.json">
-    <img src="https://img.shields.io/david/dev/iiroj/breakpoint-observer.svg?style=flat-square">
+    <img src="https://img.shields.io/david/iiroj/breakpoint-observer.svg">
+  </a>
+  <a href="https://gitlab.com/iiroj/breakpoint-observer/blob/master/package.json">
+    <img src="https://img.shields.io/david/dev/iiroj/breakpoint-observer.svg">
   </a>
   <br/>
   <br/>
