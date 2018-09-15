@@ -1,6 +1,6 @@
 {
   "name": "breakpoint-observer",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "A React Component for rendering based on breakpoints",
   "author": "Iiro Jäppinen <iiro@jappinen.fi (https://iiro.fi)",
   "license": "MIT",
