@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
 type BreakpointConfig = {
   readonly [key: string]: number;
@@ -23,7 +23,7 @@ type State = {
   mediaQueries?: Array<Breakpoint>;
 };
 
-export default class BreakpointObserver extends Component<Props, State> {
+export default class BreakpointObserver extends PureComponent<Props, State> {
   public callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
 
   public constructor(props: Props) {
@@ -59,15 +59,6 @@ export default class BreakpointObserver extends Component<Props, State> {
         this.addMediaQueryListener();
       }
     }
-  }
-
-  public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
-    return (
-      this.props.children !== nextProps.children ||
-      this.props.breakpoints !== nextProps.breakpoints ||
-      this.state.breakpoint !== nextState.breakpoint ||
-      this.state.mediaQueries !== nextState.mediaQueries
-    );
   }
 
   public render() {
