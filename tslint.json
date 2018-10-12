@@ -7,13 +7,6 @@
   ],
   "rules": {
     "no-unused-variable": false,
-    "jsx-no-multiline-js": false,
-    "prettier": [
-      true,
-      {
-        "singleQuote": true,
-        "printWidth": 120
-      }
-    ]
+    "jsx-no-multiline-js": false
   }
 }

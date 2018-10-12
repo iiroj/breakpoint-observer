@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { PureComponent } from "react";
 
 type BreakpointConfig = {
   readonly [key: string]: number;
@@ -6,8 +6,16 @@ type BreakpointConfig = {
 
 interface Props {
   readonly breakpoints: BreakpointConfig;
-  readonly callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
-  readonly children?: (id?: string, minWidth?: number, maxWidth?: number) => any;
+  readonly callback?: (
+    id?: string,
+    minWidth?: number,
+    maxWidth?: number
+  ) => any;
+  readonly children?: (
+    id?: string,
+    minWidth?: number,
+    maxWidth?: number
+  ) => any;
   readonly defaultBreakpoint?: string;
 }
 
@@ -32,14 +40,16 @@ export default class BreakpointObserver extends PureComponent<Props, State> {
     const { breakpoints, callback, defaultBreakpoint } = this.props;
 
     const mediaQueries = this.createMediaQueries(breakpoints);
-    const breakpoint = mediaQueries && mediaQueries.find(query => query.id === defaultBreakpoint);
+    const breakpoint =
+      mediaQueries &&
+      mediaQueries.find(query => query.id === defaultBreakpoint);
 
     this.state = {
       breakpoint,
       mediaQueries
     };
 
-    if (typeof callback === 'function') {
+    if (typeof callback === "function") {
       this.callback = callback;
     }
   }
@@ -64,7 +74,7 @@ export default class BreakpointObserver extends PureComponent<Props, State> {
   public render() {
     const { children } = this.props;
 
-    if (typeof children !== 'function') return null;
+    if (typeof children !== "function") return null;
 
     const { breakpoint } = this.state;
 
@@ -80,10 +90,12 @@ export default class BreakpointObserver extends PureComponent<Props, State> {
       return undefined;
     }
 
-    const sortedBreakpoints = Object.keys(breakpoints).sort((a, b) => breakpoints[b] - breakpoints[a]);
+    const sortedBreakpoints = Object.keys(breakpoints).sort(
+      (a, b) => breakpoints[b] - breakpoints[a]
+    );
 
     return sortedBreakpoints.map((breakpoint, index) => {
-      let query = '';
+      let query = "";
       const minWidth = breakpoints[breakpoint];
       const nextBreakpoint = sortedBreakpoints[index - 1] as string | undefined;
       const maxWidth = nextBreakpoint ? breakpoints[nextBreakpoint] : undefined;
@@ -92,9 +104,9 @@ export default class BreakpointObserver extends PureComponent<Props, State> {
         query = `(min-width: ${minWidth}px)`;
       }
 
-      if (typeof maxWidth !== 'undefined') {
+      if (typeof maxWidth !== "undefined") {
         if (query) {
-          query += ' and ';
+          query += " and ";
         }
         query += `(max-width: ${maxWidth - 1}px)`;
       }
@@ -116,7 +128,9 @@ export default class BreakpointObserver extends PureComponent<Props, State> {
     mediaQueries.forEach(({ id, minWidth, maxWidth, query }) => {
       const mediaQuery = window.matchMedia(query);
       this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery);
-      mediaQuery.addListener(() => this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery));
+      mediaQuery.addListener(() =>
+        this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery)
+      );
     });
   }
 
