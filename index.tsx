@@ -1,32 +1,32 @@
 import { Component } from 'react';
 
-export interface IBreakpointConfig {
+type BreakpointConfig = {
   readonly [key: string]: number;
-}
+};
 
-export interface IProps {
-  readonly breakpoints: IBreakpointConfig;
+interface Props {
+  readonly breakpoints: BreakpointConfig;
   readonly callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
   readonly children?: (id?: string, minWidth?: number, maxWidth?: number) => any;
   readonly defaultBreakpoint?: string;
 }
 
-export interface IBreakpoint {
+type Breakpoint = {
   id: string;
   maxWidth?: number;
   minWidth: number;
   query: string;
-}
+};
 
-export interface IState {
-  breakpoint?: IBreakpoint;
-  mediaQueries?: Array<IBreakpoint>;
-}
+type State = {
+  breakpoint?: Breakpoint;
+  mediaQueries?: Array<Breakpoint>;
+};
 
-export default class BreakpointObserver extends Component<IProps, IState> {
+export default class BreakpointObserver extends Component<Props, State> {
   public callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
 
-  public constructor(props: IProps) {
+  public constructor(props: Props) {
     super(props);
 
     const { breakpoints, callback, defaultBreakpoint } = this.props;
@@ -50,7 +50,7 @@ export default class BreakpointObserver extends Component<IProps, IState> {
     }
   }
 
-  public componentDidUpdate(props: IProps) {
+  public componentDidUpdate(props: Props) {
     if (props.breakpoints !== this.props.breakpoints) {
       const newMediaQueries = this.createMediaQueries(this.props.breakpoints);
       this.setState({ mediaQueries: newMediaQueries });
@@ -84,7 +84,7 @@ export default class BreakpointObserver extends Component<IProps, IState> {
     return children(id, minWidth, maxWidth);
   }
 
-  private createMediaQueries(breakpoints: IBreakpointConfig) {
+  private createMediaQueries(breakpoints: BreakpointConfig) {
     if (!breakpoints || breakpoints !== Object(breakpoints)) {
       return undefined;
     }
