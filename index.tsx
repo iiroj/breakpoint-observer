@@ -1,10 +1,10 @@
 import * as React from "react";
 
+const BreakpointContext = React.createContext<BreakpointContext>({});
+
 type BreakpointConfig = {
   readonly [key: string]: number;
 };
-
-type ChildFn = (id?: string, minWidth?: number, maxWidth?: number) => any;
 
 interface Props {
   readonly breakpoints: BreakpointConfig;
@@ -13,7 +13,7 @@ interface Props {
     minWidth?: number,
     maxWidth?: number
   ) => any;
-  readonly children?: ChildFn | React.ReactNode;
+  readonly children?: React.ReactNode;
   readonly defaultBreakpoint?: string;
 }
 
@@ -29,17 +29,13 @@ type State = {
   mediaQueries?: Array<Breakpoint>;
 };
 
-type BreakpointContenxt = {
+type BreakpointContext = {
   breakpoint?: string;
   maxWidth?: number;
   minWidth?: number;
 };
 
-const { Consumer, Provider } = React.createContext<BreakpointContenxt>({});
-
-export const BreakpointConsumer = Consumer;
-
-export default class BreakpointObserver extends React.Component<Props, State> {
+export class Provider extends React.Component<Props, State> {
   public callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
 
   public constructor(props: Props) {
@@ -86,20 +82,16 @@ export default class BreakpointObserver extends React.Component<Props, State> {
 
     const { breakpoint } = this.state;
 
-    if (!breakpoint) {
-      return typeof children === "function"
-        ? (children as ChildFn)()
-        : children;
-    }
+    if (!breakpoint) return children;
 
     const { id, maxWidth, minWidth } = breakpoint;
 
-    return typeof children === "function" ? (
-      (children as ChildFn)(id, minWidth, maxWidth)
-    ) : (
-      <Provider value={{ breakpoint: id, maxWidth, minWidth }}>
+    return (
+      <BreakpointContext.Provider
+        value={{ breakpoint: id, maxWidth, minWidth }}
+      >
         {children}
-      </Provider>
+      </BreakpointContext.Provider>
     );
   }
 
@@ -165,3 +157,7 @@ export default class BreakpointObserver extends React.Component<Props, State> {
     }
   }
 }
+
+export const Consumer = BreakpointContext.Consumer;
+
+export default Provider;
