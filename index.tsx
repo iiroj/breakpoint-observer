@@ -1,55 +1,53 @@
 import * as React from "react";
 
-const BreakpointContext = React.createContext<BreakpointContext>({});
+const BreakpointContext = React.createContext<CurrentBreakpoint>({});
 
 type BreakpointConfig = {
   readonly [key: string]: number;
 };
 
+type CurrentBreakpoint = {
+  breakpoint?: string;
+  maxWidth?: number;
+  minWidth?: number;
+};
+
+type CallbackFn = (args: CurrentBreakpoint) => any;
+
 interface Props {
   readonly breakpoints: BreakpointConfig;
-  readonly callback?: (
-    id?: string,
-    minWidth?: number,
-    maxWidth?: number
-  ) => any;
+  readonly callback?: CallbackFn;
   readonly children?: React.ReactNode;
   readonly defaultBreakpoint?: string;
 }
 
-type Breakpoint = {
-  id: string;
+type MediaQuery = {
+  breakpoint: string;
   maxWidth?: number;
   minWidth: number;
   query: string;
 };
 
 type State = {
-  breakpoint?: Breakpoint;
-  mediaQueries?: Array<Breakpoint>;
-};
-
-type BreakpointContext = {
-  breakpoint?: string;
-  maxWidth?: number;
-  minWidth?: number;
+  current?: CurrentBreakpoint;
+  mediaQueries?: MediaQuery[];
 };
 
 export class Provider extends React.Component<Props, State> {
-  public callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
+  public callback?: CallbackFn;
 
   public constructor(props: Props) {
     super(props);
 
-    const { breakpoints, callback, defaultBreakpoint } = this.props;
+    const { callback, defaultBreakpoint } = this.props;
 
-    const mediaQueries = this.createMediaQueries(breakpoints);
-    const breakpoint =
+    const mediaQueries = this.createMediaQueries(this.props.breakpoints);
+    const current =
       mediaQueries &&
-      mediaQueries.find(query => query.id === defaultBreakpoint);
+      mediaQueries.find(query => query.breakpoint === defaultBreakpoint);
 
     this.state = {
-      breakpoint,
+      current,
       mediaQueries
     };
 
@@ -80,16 +78,12 @@ export class Provider extends React.Component<Props, State> {
 
     if (!children) return null;
 
-    const { breakpoint } = this.state;
+    const { current } = this.state;
 
-    if (!breakpoint) return children;
-
-    const { id, maxWidth, minWidth } = breakpoint;
+    if (!current) return children;
 
     return (
-      <BreakpointContext.Provider
-        value={{ breakpoint: id, maxWidth, minWidth }}
-      >
+      <BreakpointContext.Provider value={current}>
         {children}
       </BreakpointContext.Provider>
     );
@@ -122,7 +116,7 @@ export class Provider extends React.Component<Props, State> {
       }
 
       return {
-        id: breakpoint,
+        breakpoint,
         maxWidth,
         minWidth,
         query
@@ -135,25 +129,24 @@ export class Provider extends React.Component<Props, State> {
 
     if (!mediaQueries) return;
 
-    mediaQueries.forEach(({ id, minWidth, maxWidth, query }) => {
+    mediaQueries.forEach(({ breakpoint, minWidth, maxWidth, query }) => {
       const mediaQuery = window.matchMedia(query);
-      this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery);
+      this.updateBreakpoint(breakpoint, maxWidth, minWidth, mediaQuery);
       mediaQuery.addListener(() =>
-        this.updateBreakpoint(id, maxWidth, minWidth, query, mediaQuery)
+        this.updateBreakpoint(breakpoint, maxWidth, minWidth, mediaQuery)
       );
     });
   }
 
   private updateBreakpoint(
-    id: string,
+    breakpoint: string,
     maxWidth: number | undefined,
     minWidth: number,
-    query: string,
     { matches }: { matches: boolean }
   ) {
     if (matches) {
-      this.setState({ breakpoint: { id, maxWidth, minWidth, query } });
-      this.callback && this.callback(id, minWidth, maxWidth);
+      this.setState({ current: { breakpoint, maxWidth, minWidth } });
+      this.callback && this.callback({ breakpoint, minWidth, maxWidth });
     }
   }
 }

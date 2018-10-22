@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import BreakpointObserver from "../";
 
 storiesOf("breakpoint-observer", module).add("Callback Function", () => {
-  const myCallback = breakpoint =>
+  const myCallback = ({ breakpoint }) =>
     console.log(`The current breakpoint is ${breakpoint}!`);
 
   return (
@@ -19,7 +19,7 @@ storiesOf("breakpoint-observer", module).add("Callback Function", () => {
       </p>
 
       <BreakpointObserver
-        breakpoints={{ mobile: 0, tablet: 768 }}
+        breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}
         defaultBreakpoint={"tablet"}
         callback={myCallback}
       />
