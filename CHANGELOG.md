@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v0.10.0...v1.0.0) (2018-10-22)
+
+
+### Code Refactoring
+
+* callback prop receives an object {breakpoint, minWidth, maxWidth } ([0a79179](https://gitlab.com/iiroj/breakpoint-observer/commit/0a79179))
+* remove children render prop ([d600f9f](https://gitlab.com/iiroj/breakpoint-observer/commit/d600f9f))
+* rename callback prop to onChange ([973715e](https://gitlab.com/iiroj/breakpoint-observer/commit/973715e))
+
+
+### BREAKING CHANGES
+
+* This commit changes the name of the `callback` prop to `onChange` to better align it with other React conventions.
+* The callback prop no longer receives three arguments, but rather an object with named keys. This change aligns its arguments with the BreakpointObserver.Consumer
+* Remove support for passing a render prop as the children prop, and only support React’s Context API. This is a more native way to handle breakpoint change observations, as the BreakpointObserver.Provider can be included only once in the React tree and then consumed in multiple places with the BreakpointObserver.Consumer.
+
+
+
 <a name="0.10.0"></a>
 # [0.10.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v0.9.7...v0.10.0) (2018-10-22)
 
