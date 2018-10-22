@@ -58,7 +58,7 @@ ReactDOM.render(
 
 ### Callback Function
 
-Import `BreakpointObserver` as a React component and give it a callback function. The function will receive the current breakpoint like the `BreakpointObserver.Consumer`.
+Import `BreakpointObserver` as a React component and give it a callback function via the `onChange` prop. The function will receive the current breakpoint like the `BreakpointObserver.Consumer`.
 
 ```javascript
 import BreakpointObserver from 'breakpoint-observer';
@@ -71,7 +71,7 @@ const myCallback = ({ breakpoint, maxWidth, minWidth }) =>
 ReactDOM.render(
   <BreakpointObserver
     breakpoints={{ mobile: 0, tablet: 768 }}
-    callback={myCallback}
+    onChange={myCallback}
     defaultBreakpoint={'tablet'}
   />,
   document.body

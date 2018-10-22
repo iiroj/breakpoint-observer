@@ -18,7 +18,7 @@ type CallbackFn = (args: CurrentBreakpoint) => any;
 
 interface Props {
   readonly breakpoints: BreakpointConfig;
-  readonly callback?: CallbackFn;
+  readonly onChange?: CallbackFn;
   readonly children?: React.ReactNode;
   readonly defaultBreakpoint?: string;
 }
@@ -41,7 +41,7 @@ export default class BreakpointObserver extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props);
 
-    const { callback, defaultBreakpoint } = this.props;
+    const { onChange, defaultBreakpoint } = this.props;
 
     const mediaQueries = this.createMediaQueries(this.props.breakpoints);
     const current =
@@ -53,8 +53,8 @@ export default class BreakpointObserver extends React.Component<Props, State> {
       mediaQueries
     };
 
-    if (typeof callback === "function") {
-      this.callback = callback;
+    if (typeof onChange === "function") {
+      this.callback = onChange;
     }
   }
 

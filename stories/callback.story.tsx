@@ -21,7 +21,7 @@ storiesOf("breakpoint-observer", module).add("Callback Function", () => {
       <BreakpointObserver
         breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}
         defaultBreakpoint={"tablet"}
-        callback={myCallback}
+        onChange={myCallback}
       />
     </>
   );
