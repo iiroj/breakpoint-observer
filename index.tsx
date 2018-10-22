@@ -2,6 +2,8 @@ import * as React from "react";
 
 const BreakpointContext = React.createContext<CurrentBreakpoint>({});
 
+BreakpointContext.Consumer.displayName = "BreakpointObserver";
+
 type BreakpointConfig = {
   readonly [key: string]: number;
 };
@@ -33,7 +35,7 @@ type State = {
   mediaQueries?: MediaQuery[];
 };
 
-export class Provider extends React.Component<Props, State> {
+export default class BreakpointObserver extends React.Component<Props, State> {
   public callback?: CallbackFn;
 
   public constructor(props: Props) {
@@ -152,5 +154,4 @@ export class Provider extends React.Component<Props, State> {
 }
 
 export const Consumer = BreakpointContext.Consumer;
-
-export default Provider;
+export const Provider = BreakpointObserver;
