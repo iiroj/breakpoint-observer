@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v0.9.7...v0.10.0) (2018-10-22)
+
+
+### Bug Fixes
+
+* enable prettier ([4e910b3](https://gitlab.com/iiroj/breakpoint-observer/commit/4e910b3))
+
+
+### Features
+
+* add support for React Context API ([ff7e780](https://gitlab.com/iiroj/breakpoint-observer/commit/ff7e780))
+
+
+
 <a name="0.9.7"></a>
 ## [0.9.7](https://gitlab.com/iiroj/breakpoint-observer/compare/v0.9.6...v0.9.7) (2018-10-12)
 
