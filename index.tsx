@@ -1,8 +1,10 @@
-import { Component } from "react";
+import * as React from "react";
 
 type BreakpointConfig = {
   readonly [key: string]: number;
 };
+
+type ChildFn = (id?: string, minWidth?: number, maxWidth?: number) => any;
 
 interface Props {
   readonly breakpoints: BreakpointConfig;
@@ -11,11 +13,7 @@ interface Props {
     minWidth?: number,
     maxWidth?: number
   ) => any;
-  readonly children?: (
-    id?: string,
-    minWidth?: number,
-    maxWidth?: number
-  ) => any;
+  readonly children?: ChildFn | React.ReactNode;
   readonly defaultBreakpoint?: string;
 }
 
@@ -31,7 +29,17 @@ type State = {
   mediaQueries?: Array<Breakpoint>;
 };
 
-export default class BreakpointObserver extends Component<Props, State> {
+type BreakpointContenxt = {
+  breakpoint?: string;
+  maxWidth?: number;
+  minWidth?: number;
+};
+
+const { Consumer, Provider } = React.createContext<BreakpointContenxt>({});
+
+export const BreakpointConsumer = Consumer;
+
+export default class BreakpointObserver extends React.Component<Props, State> {
   public callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
 
   public constructor(props: Props) {
@@ -74,15 +82,25 @@ export default class BreakpointObserver extends Component<Props, State> {
   public render() {
     const { children } = this.props;
 
-    if (typeof children !== "function") return null;
+    if (!children) return null;
 
     const { breakpoint } = this.state;
 
-    if (!breakpoint) return children();
+    if (!breakpoint) {
+      return typeof children === "function"
+        ? (children as ChildFn)()
+        : children;
+    }
 
-    const { id, minWidth, maxWidth } = breakpoint;
+    const { id, maxWidth, minWidth } = breakpoint;
 
-    return children(id, minWidth, maxWidth);
+    return typeof children === "function" ? (
+      (children as ChildFn)(id, minWidth, maxWidth)
+    ) : (
+      <Provider value={{ breakpoint: id, maxWidth, minWidth }}>
+        {children}
+      </Provider>
+    );
   }
 
   private createMediaQueries(breakpoints: BreakpointConfig) {

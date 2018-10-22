@@ -6,7 +6,7 @@ module.exports = (baseConfig, env, config) => {
     }
   ];
 
-  config.resolve.extensions = [".js", ".ts", ".tsx"];
+  config.resolve.extensions = [".ts", ".tsx", ".js"];
 
   return config;
 };
