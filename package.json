@@ -35,7 +35,7 @@
     "@babel/preset-typescript": "^7.1.0",
     "@babel/register": "^7.0.0",
     "@storybook/react": "^4.0.0-alpha.21",
-    "@types/react": "^16.4.16",
+    "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/storybook__react": "^3.0.9",
     "babel-loader": "^8.0.4",
