@@ -26,61 +26,61 @@
 
 ## Usage
 
-Using `breakpoint-observer` is simple. You can use it with a render prop, a child function that will receive the current breakpoint, minWidth and maxWidth. Alternatively, you can skip rendering children and supply it a callback function.
+`breakpoint-observer` works via the [React Context](https://reactjs.org/docs/context.html), or a callback function. Simply render `<BreakpointObserver.Provider />` at the top-level of your application and listen to changes via some state like redux, or with the `<BreakpointObserver.Consumer />`.
 
-### Render Prop
+### Context
 
-Import `breakpoint-observer` as a React component and wrap it around some content. Its children should be a function that receives the current breakpoint, and its minWidth (number) and maxWidth (number), from the specified breakpoint object. These values can be used for anything, for example conditional rendering of different child components!
+Import `BreakpointObserver.Provider` as a React component and wrap it around some content. Somewhere lower in the React tree, use the `BreakpointObserver.Consumer` with a child function that receives the current breakpoint, and its minWidth (number) and maxWidth (number), from the specified breakpoint object. These values can be used for anything, for example conditional rendering of different child components!
 
 ```javascript
-import React from 'react';
-import BreakpointObserver from 'breakpoint-observer';
+import * as BreakpointObserver from 'breakpoint-observer';
 
 ...
 
-<BreakpointObserver
-  breakpoints={{ mobile: 0, tablet: 768 }}
-  defaultBreakpoint={'tablet'}
->
-  {breakpoint => <p>The current breakpoint is {breakpoint}!</p>}
-</BreakpointObserver>
+const CurrentBreakpoint = () => (
+  <BreakpointObserver.Consumer>
+    {({ breakpoint, maxWidth, minWidth } ) => <p>The current breakpoint is {breakpoint}!</p>}
+  </BreakpointObserver.Consumer>
+);
 
 ...
 
-<BreakpointObserver breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}>
-  {(_unused, minWidth) => <p>Are we in tablet layout? The answer is {minWidth >= 768 ? 'yes' : 'no'}</p>}
-</BreakpointObserver>
-
-...
-
-<BreakpointObserver breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}>
-  {(_unused, _unused2, maxWidth) => <p>Are we in mobile layout? The answer is {maxWidth < 768 ? 'yes' : 'no'}</p>}
-</BreakpointObserver>
+ReactDOM.render(
+  <BreakpointObserver.Provider
+    breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}
+    defaultBreakpoint="desktop"
+  >
+    <CurrentBreakpoint />
+  </BreakpointObserver.Provider>,
+  document.body
+);
 ```
 
 ### Callback Function
 
-Import `breakpoint-observer` as a React component and give it a callback function. The function will receive the current breakpoint from the specified breakpoint object. The current breakpoint value is a string that can be used for anything, for example store it in Redux!
+Import `BreakpointObserver` as a React component and give it a callback function. The function will receive the current breakpoint like the `BreakpointObserver.Consumer`.
 
 ```javascript
-import React from 'react';
 import BreakpointObserver from 'breakpoint-observer';
 
-const myCallback = breakpoint =>
+const myCallback = ({ breakpoint, maxWidth, minWidth }) =>
     console.log(`The current breakpoint is ${breakpoint}!`);
 
 ...
 
-<BreakpointObserver
-  breakpoints={{ mobile: 0, tablet: 768 }}
-  callback={myCallback}
-  defaultBreakpoint={'tablet'}
-/>
+ReactDOM.render(
+  <BreakpointObserver
+    breakpoints={{ mobile: 0, tablet: 768 }}
+    callback={myCallback}
+    defaultBreakpoint={'tablet'}
+  />,
+  document.body
+);
 ```
 
 ### SSR
 
-For server-side rendering a `defaultBreakpoint` is supported. This value is returned when there is no window to calculate actual breakpoints from.
+For server-side rendering a `defaultBreakpoint` prop is supported. This value is returned when there is no window to calculate actual breakpoints from.
 
 ## Functionality
 
@@ -88,4 +88,4 @@ This component uses the [window.matchMedia](https://developer.mozilla.org/en-US/
 
 ## Developing
 
-This project is built with [Babel 7](https://github.com/babel/babel/wiki/Babel-7) and [Typescript](http://www.typescriptlang.org/). Typescript is actually run and compiled through Babel. A [Storybook](http://storybook.js.org/) is included for local previewing. The easiest way to get started is cloning the repo and starting the storybook server locally.
+This project is built with [Typescript](http://www.typescriptlang.org/). A [Storybook](http://storybook.js.org/) is included for local previewing. The easiest way to get started is cloning the repo and starting the storybook server locally via `npm start`.
