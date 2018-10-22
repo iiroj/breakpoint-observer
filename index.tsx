@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import { Component } from "react";
 
 type BreakpointConfig = {
   readonly [key: string]: number;
@@ -31,7 +31,7 @@ type State = {
   mediaQueries?: Array<Breakpoint>;
 };
 
-export default class BreakpointObserver extends PureComponent<Props, State> {
+export default class BreakpointObserver extends Component<Props, State> {
   public callback?: (id?: string, minWidth?: number, maxWidth?: number) => any;
 
   public constructor(props: Props) {
