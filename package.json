@@ -24,8 +24,8 @@
     "postrelease": "npm publish"
   },
   "peerDependencies": {
-    "react": ">=15",
-    "react-dom": ">=15"
+    "react": ">=16.3",
+    "react-dom": ">=16.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
