@@ -4,17 +4,17 @@ const BreakpointContext = React.createContext<CurrentBreakpoint>({});
 
 BreakpointContext.Consumer.displayName = "BreakpointObserver";
 
-type BreakpointConfig = {
+export type BreakpointConfig = {
   readonly [key: string]: number;
 };
 
-type CurrentBreakpoint = {
+export type CurrentBreakpoint = {
   breakpoint?: string;
   maxWidth?: number;
   minWidth?: number;
 };
 
-type CallbackFn = (args: CurrentBreakpoint) => any;
+export type CallbackFn = (args: CurrentBreakpoint) => any;
 
 interface Props {
   readonly breakpoints: BreakpointConfig;
@@ -153,5 +153,22 @@ export default class BreakpointObserver extends React.Component<Props, State> {
   }
 }
 
-export const Consumer = BreakpointContext.Consumer;
 export const Provider = BreakpointObserver;
+export const Consumer = BreakpointContext.Consumer;
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+export const withBreakpoint = <P extends CurrentBreakpoint>(
+  Component: React.ComponentType<P>
+) => (props: Omit<P, keyof CurrentBreakpoint>) => (
+  <BreakpointContext.Consumer>
+    {({ breakpoint, maxWidth, minWidth }) => (
+      <Component
+        {...props}
+        breakpoint={breakpoint}
+        maxWidth={maxWidth}
+        minWidth={minWidth}
+      />
+    )}
+  </BreakpointContext.Consumer>
+);
