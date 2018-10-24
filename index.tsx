@@ -158,9 +158,11 @@ export const Consumer = BreakpointContext.Consumer;
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-export const withBreakpoint = <P extends CurrentBreakpoint>(
+export type WithBreakpointProps = CurrentBreakpoint;
+
+export const withBreakpoint = <P extends WithBreakpointProps>(
   Component: React.ComponentType<P>
-) => (props: Omit<P, keyof CurrentBreakpoint>) => (
+) => (props: Omit<P, keyof WithBreakpointProps>) => (
   <BreakpointContext.Consumer>
     {({ breakpoint, maxWidth, minWidth }) => (
       <Component
