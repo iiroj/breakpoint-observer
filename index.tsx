@@ -2,7 +2,7 @@ import * as React from "react";
 
 const BreakpointContext = React.createContext<CurrentBreakpoint>({});
 
-BreakpointContext.Consumer.displayName = "BreakpointObserver";
+// BreakpointContext.Consumer.displayName = "BreakpointObserver";
 
 export type BreakpointConfig = {
   readonly [key: string]: number;
