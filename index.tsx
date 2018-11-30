@@ -156,13 +156,11 @@ export default class BreakpointObserver extends React.Component<Props, State> {
 export const Provider = BreakpointObserver;
 export const Consumer = BreakpointContext.Consumer;
 
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
 export type WithBreakpointProps = CurrentBreakpoint;
 
-export const withBreakpoint = <P extends WithBreakpointProps>(
-  Component: React.ComponentType<P>
-) => (props: Omit<P, keyof WithBreakpointProps>) => (
+export const withBreakpoint = <ComponentProps extends {}>(
+  Component: React.ComponentType<ComponentProps & WithBreakpointProps>
+) => (props: ComponentProps) => (
   <BreakpointContext.Consumer>
     {({ breakpoint, maxWidth, minWidth }) => (
       <Component
