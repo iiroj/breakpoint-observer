@@ -5,7 +5,7 @@ import {
   CurrentBreakpoint,
   Provider as BreakpointProvider,
   withBreakpoint
-} from "../index";
+} from "../src";
 
 storiesOf("breakpoint-observer", module).add("withBreakpoint HOC", () => {
   type DisplayBreakpointProps = CurrentBreakpoint & {

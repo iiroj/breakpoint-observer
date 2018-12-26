@@ -1,11 +1,11 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
-import BreakpointObserver from "../";
+import BreakpointObserver from "../src";
 
 storiesOf("breakpoint-observer", module).add("Callback Function", () => {
-  const myCallback = ({ breakpoint }) =>
-    console.log(`The current breakpoint is ${breakpoint}!`);
+  const myCallback = (props: { breakpoint?: string }) =>
+    console.log(`The current breakpoint is ${props.breakpoint}!`);
 
   return (
     <>

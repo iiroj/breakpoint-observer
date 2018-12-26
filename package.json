@@ -7,21 +7,23 @@
   "homepage": "https://gitlab.com/iiroj/breakpoint-observer",
   "repository": "gitlab:iiroj/breakpoint-observer",
   "bugs": "https://gitlab.com/iiroj/breakpoint-observer/issues",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts"
+    "dist/**/*"
   ],
+  "sideEffects": false,
   "scripts": {
     "start": "start-storybook -p 8080 -c .storybook",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc --build tsconfig.json",
-    "clean": "tsc --build --clean tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "watch": "rollup -cw",
+    "build": "rollup -c",
+    "preversion": "npm run lint && npm run build",
     "version": "standard-version",
-    "prerelease": "npm run lint && npm run build",
-    "release": "git push --follow-tags origin master",
-    "postrelease": "npm publish"
+    "push": "git push --follow-tags origin master",
+    "prepublishOnly": "npm run version && npm run push"
   },
   "peerDependencies": {
     "react": ">=16.3",
@@ -46,7 +48,11 @@
     "prettier": "^1.15.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "rollup": "^0.68.2",
+    "rollup-plugin-babel-minify": "^6.2.0",
+    "rollup-plugin-typescript2": "^0.18.1",
     "standard-version": "^4.4.0",
+    "ts-loader": "^5.3.2",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-config-standard": "^8.0.1",

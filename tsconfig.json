@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
     "declaration": true,
     "jsx": "react",
     "lib": ["dom", "es6"],
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
-    "noResolve": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "pretty": true,
     "strict": true,
     "target": "es5"
-  },
-  "include": ["./index.tsx"]
+  }
 }

@@ -1,8 +1,11 @@
 module.exports = (baseConfig, env, config) => {
-  config.module.rules = [
+  config.module.rules.push(
     {
-      test: /\.(jsx?|tsx?)$/,
-      loader: "babel-loader"
+      test: /\.tsx?$/,
+      loader: "ts-loader",
+      options: {
+        transpileOnly: true
+      }
     },
     {
       test: /story\.tsx?$/,
@@ -14,9 +17,9 @@ module.exports = (baseConfig, env, config) => {
       ],
       enforce: "pre"
     }
-  ];
+  );
 
-  config.resolve.extensions = [".ts", ".tsx", ".js"];
+  config.resolve.extensions.push(".ts", ".tsx");
 
   return config;
 };

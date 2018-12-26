@@ -1,7 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
-import * as BreakpointObserver from "../index";
+import * as BreakpointObserver from "../src";
 
 storiesOf("breakpoint-observer", module).add("Context API", () => {
   const CurrentBreakpoint = () => (
