@@ -6,9 +6,6 @@
     "tslint-config-prettier"
   ],
   "rules": {
-    "deprecation": false,
-    "no-unused-variable": false,
-    "jsx-no-multiline-js": false,
     "prettier": true
   }
 }

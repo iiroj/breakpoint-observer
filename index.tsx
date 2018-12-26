@@ -134,6 +134,7 @@ export default class BreakpointObserver extends React.Component<Props, State> {
     mediaQueries.forEach(({ breakpoint, minWidth, maxWidth, query }) => {
       const mediaQuery = window.matchMedia(query);
       this.updateBreakpoint(breakpoint, maxWidth, minWidth, mediaQuery);
+      // tslint:disable deprecation
       mediaQuery.addListener(() =>
         this.updateBreakpoint(breakpoint, maxWidth, minWidth, mediaQuery)
       );
