@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v1.1.5...v1.2.0) (2018-12-26)
+
+
+### Features
+
+* generate cjs and esm build with rollup ([80fd63e](https://gitlab.com/iiroj/breakpoint-observer/commit/80fd63e))
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://gitlab.com/iiroj/breakpoint-observer/compare/v1.1.4...v1.1.5) (2018-12-26)
 
