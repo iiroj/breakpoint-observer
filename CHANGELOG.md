@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v1.2.0...v1.3.0) (2019-01-03)
+
+
+### Features
+
+* upgrade to Rollup v1.0 and build umd bundle ([12c6a30](https://gitlab.com/iiroj/breakpoint-observer/commit/12c6a30))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v1.1.5...v1.2.0) (2018-12-26)
 
