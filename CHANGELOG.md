@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v1.3.0...v1.4.0) (2019-01-04)
+
+
+### Features
+
+* use terser instead of babel-minify ([a1f5103](https://gitlab.com/iiroj/breakpoint-observer/commit/a1f5103))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://gitlab.com/iiroj/breakpoint-observer/compare/v1.2.0...v1.3.0) (2019-01-03)
 
