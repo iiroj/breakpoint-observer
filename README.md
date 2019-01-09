@@ -2,7 +2,8 @@
   <h1 align="center">breakpoint-observer</h1>
   <p>A React Component for rendering based on breakpoints.</p>
   <a href="https://www.npmjs.com/package/breakpoint-observer"><strong>npm</strong></a> ·
-  <a href="https://github.com/iiroj/breakpoint-observer"><strong>github</strong></a>
+  <a href="https://github.com/iiroj/breakpoint-observer"><strong>GitHub</strong></a> ·
+  <a href="https://gitlab.com/iiroj/breakpoint-observer"><strong>GitLab</strong></a>
   <br/>
   <br/>
   <a href="https://www.npmjs.com/package/breakpoint-observer">
