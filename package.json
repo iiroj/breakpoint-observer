@@ -56,7 +56,7 @@
     "rollup-plugin-typescript2": "^0.18.1",
     "standard-version": "^4.4.0",
     "ts-loader": "^5.3.3",
-    "tslint": "^5.12.0",
+    "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-config-standard": "^8.0.1",
     "tslint-plugin-prettier": "^2.0.1",
