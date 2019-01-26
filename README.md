@@ -12,9 +12,6 @@
   <a href="https://github.com/iiroj/breakpoint-observer">
     <img src="https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg">
   </a>
-  <a href="https://travis-ci.com/iiroj/breakpoint-observer">
-    <img src="https://travis-ci.com/iiroj/breakpoint-observer.svg?branch=master" />
-  </a>
   <a href="https://github.com/iiroj/breakpoint-observer/blob/master/package.json">
     <img src="https://img.shields.io/david/iiroj/breakpoint-observer.svg">
   </a>
