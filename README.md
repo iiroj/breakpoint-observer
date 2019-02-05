@@ -1,26 +1,11 @@
-<div align="center">
-  <h1 align="center">breakpoint-observer</h1>
-  <p>A React Component for rendering based on breakpoints.</p>
-  <a href="https://www.npmjs.com/package/breakpoint-observer"><strong>npm</strong></a> ·
-  <a href="https://github.com/iiroj/breakpoint-observer"><strong>GitHub</strong></a> ·
-  <a href="https://gitlab.com/iiroj/breakpoint-observer"><strong>GitLab</strong></a>
-  <br/>
-  <br/>
-  <a href="https://www.npmjs.com/package/breakpoint-observer">
-    <img src="https://img.shields.io/npm/v/breakpoint-observer.svg">
-  </a>
-  <a href="https://github.com/iiroj/breakpoint-observer">
-    <img src="https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg">
-  </a>
-  <a href="https://github.com/iiroj/breakpoint-observer/blob/master/package.json">
-    <img src="https://img.shields.io/david/iiroj/breakpoint-observer.svg">
-  </a>
-  <a href="https://github.com/iiroj/breakpoint-observer/blob/master/package.json">
-    <img src="https://img.shields.io/david/dev/iiroj/breakpoint-observer.svg">
-  </a>
-  <br/>
-  <br/>
-</div>
+# breakpoint-observer
+
+[![version](https://img.shields.io/npm/v/breakpoint-observer.svg)](https://www.npmjs.com/package/breakpoint-observer)
+[![code size](https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg)](https://github.com/iiroj/breakpoint-observer)
+[![dependencies](https://img.shields.io/david/iiroj/breakpoint-observer.svg)](https://github.com/iiroj/breakpoint-observer/blob/master/package.json)
+[![devDependencies](https://img.shields.io/david/dev/iiroj/breakpoint-observer.svg)](https://github.com/iiroj/breakpoint-observer/blob/master/package.json)
+
+A React Component for rendering based on breakpoints.
 
 ## Usage
 
