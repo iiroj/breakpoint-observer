@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.5.0](https://github.com/iiroj/breakpoint-observer/compare/v1.4.10...v1.5.0) (2019-02-18)
+
+
+### Features
+
+* export useBreakpoint hook ([2757ffd](https://github.com/iiroj/breakpoint-observer/commit/2757ffd))
+
+
+
 <a name="1.4.10"></a>
 ## [1.4.10](https://github.com/iiroj/breakpoint-observer/compare/v1.4.9...v1.4.10) (2019-02-05)
 
