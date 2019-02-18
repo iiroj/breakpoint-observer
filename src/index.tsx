@@ -171,3 +171,5 @@ export const withBreakpoint = <ComponentProps extends {}>(
     )}
   </BreakpointContext.Consumer>
 );
+
+export const useBreakpoint = () => React.useContext(BreakpointContext);
