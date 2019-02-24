@@ -9,14 +9,53 @@ A React Component for rendering based on breakpoints.
 
 ## Usage
 
-`breakpoint-observer` works via the [React Context](https://reactjs.org/docs/context.html), or a callback function. Simply render `<BreakpointObserver.Provider />` at the top-level of your application and listen to changes via some state like redux, or with the `<BreakpointObserver.Consumer />`.
+The main import `BreakpointObserver` listens to breakpoint changes and uses [React Context](https://reactjs.org/docs/context.html) to pass it to components below:
+
+```javascript
+import BreakpointObserver from 'breakpoint-observer';
+...
+
+ReactDOM.render(
+  <BreakpointObserver
+    breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}
+    defaultBreakpoint="desktop"
+  >
+    <App />
+  </BreakpointObserver>,
+  document.body
+);
+```
+
+### React hooks
+
+```javascript
+import { useBreakpoint } from 'breakpoint-observer';
+
+...
+
+const CurrentBreakpoint = () => {
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint();
+
+  return <p>The current breakpoint is {breakpoint}!</p>}
+};
+```
+
+### HOC
+
+```javascript
+import { withBreakpoint } from 'breakpoint-observer';
+
+...
+
+const CurrentBreakpoint = withBreakpoint(({ breakpoint, maxWidth, minWidth }) => (
+  <p>The current breakpoint is {breakpoint}!</p>}
+));
+```
 
 ### Context
 
-Import `BreakpointObserver.Provider` as a React component and wrap it around some content. Somewhere lower in the React tree, use the `BreakpointObserver.Consumer` with a child function that receives the current breakpoint, and its minWidth (number) and maxWidth (number), from the specified breakpoint object. These values can be used for anything, for example conditional rendering of different child components!
-
 ```javascript
-import * as BreakpointObserver from 'breakpoint-observer';
+import { Consumer } from 'breakpoint-observer';
 
 ...
 
@@ -25,21 +64,9 @@ const CurrentBreakpoint = () => (
     {({ breakpoint, maxWidth, minWidth } ) => <p>The current breakpoint is {breakpoint}!</p>}
   </BreakpointObserver.Consumer>
 );
-
-...
-
-ReactDOM.render(
-  <BreakpointObserver.Provider
-    breakpoints={{ mobile: 0, tablet: 768, desktop: 1280 }}
-    defaultBreakpoint="desktop"
-  >
-    <CurrentBreakpoint />
-  </BreakpointObserver.Provider>,
-  document.body
-);
 ```
 
-### Callback Function
+## Callback usage
 
 Import `BreakpointObserver` as a React component and give it a callback function via the `onChange` prop. The function will receive the current breakpoint like the `BreakpointObserver.Consumer`.
 
@@ -61,7 +88,7 @@ ReactDOM.render(
 );
 ```
 
-### SSR
+## SSR
 
 For server-side rendering a `defaultBreakpoint` prop is supported. This value is returned when there is no window to calculate actual breakpoints from.
 
