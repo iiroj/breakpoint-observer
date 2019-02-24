@@ -2,12 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-# [1.5.0](https://github.com/iiroj/breakpoint-observer/compare/v1.4.10...v1.5.0) (2019-02-18)
+## [1.5.1](https://github.com/iiroj/breakpoint-observer/compare/v1.5.0...v1.5.1) (2019-02-24)
 
 
-### Features
+### Bug Fixes
 
-* export useBreakpoint hook ([2757ffd](https://github.com/iiroj/breakpoint-observer/commit/2757ffd))
+* add settings so that Rollup is happy ([df1b74d](https://github.com/iiroj/breakpoint-observer/commit/df1b74d))
 
 
 
