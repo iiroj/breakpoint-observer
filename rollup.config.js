@@ -17,12 +17,27 @@ const plugins = [
   production && terser()
 ];
 
+const output = {
+  exports: "named",
+  globals: {
+    react: "React"
+  }
+};
+
 export default [
   {
     input: "src/index.tsx",
     output: [
-      { file: pkg.main, format: "cjs" },
-      { file: pkg.module, format: "es" }
+      {
+        ...output,
+        file: pkg.main,
+        format: "cjs"
+      },
+      {
+        ...output,
+        file: pkg.module,
+        format: "es"
+      }
     ],
     external,
     plugins
@@ -30,6 +45,7 @@ export default [
   {
     input: "src/index.tsx",
     output: {
+      ...output,
       file: pkg.browser,
       format: "umd",
       name: "breakpointObserver"
