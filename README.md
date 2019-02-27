@@ -1,3 +1,9 @@
+# ⚠️ Deprecated ☠️
+
+Now that React Hooks have been released in version 16.8, this package has been deprecated in favor of [use-breakpoint](https://www.npmjs.com/package/use-breakpoint). This package will continue to work, but you should upgrade to React >=16.8 and use [use-breakpoint](https://www.npmjs.com/package/use-breakpoint).
+
+----
+
 # breakpoint-observer
 
 [![version](https://img.shields.io/npm/v/breakpoint-observer.svg)](https://www.npmjs.com/package/breakpoint-observer)
