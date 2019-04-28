@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.7](https://github.com/iiroj/breakpoint-observer/compare/v1.5.6...v1.5.7) (2019-04-28)
+
+
+
 ## [1.5.6](https://github.com/iiroj/breakpoint-observer/compare/v1.5.5...v1.5.6) (2019-03-27)
 
 
