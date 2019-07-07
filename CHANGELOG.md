@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.12](https://github.com/iiroj/breakpoint-observer/compare/v1.5.11...v1.5.12) (2019-07-07)
+
+
+### Build System
+
+* add husky, commitlint and lint-staged ([bee1f23](https://github.com/iiroj/breakpoint-observer/commit/bee1f23))
+
+
+
 ### [1.5.11](https://github.com/iiroj/breakpoint-observer/compare/v1.5.10...v1.5.11) (2019-07-06)
 
 
