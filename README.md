@@ -6,7 +6,7 @@ Now that React Hooks have been released in version 16.8, this package has been d
 
 # breakpoint-observer
 
-[![CircleCI](https://circleci.com/gh/iiroj/breakpoint-observer.svg?style=shield)](https://circleci.com/gh/iiroj/breakpoint-observer)
+[![GitHub Actions](https://github.com/iiroj/breakpoint-observer/workflows/Tags/badge.svg)](https://github.com/iiroj/breakpoint-observer/actions)
 [![version](https://img.shields.io/npm/v/breakpoint-observer.svg)](https://www.npmjs.com/package/breakpoint-observer)
 [![code size](https://img.shields.io/github/languages/code-size/iiroj/breakpoint-observer.svg)](https://github.com/iiroj/breakpoint-observer)
 [![dependencies](https://img.shields.io/david/iiroj/breakpoint-observer.svg)](https://github.com/iiroj/breakpoint-observer/blob/master/package.json)
