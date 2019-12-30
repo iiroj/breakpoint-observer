@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/iiroj/breakpoint-observer/compare/v1.5.18...v1.6.0) (2019-12-30)
+
+
+### Features
+
+* use mjs extension for esm module ([1569908](https://github.com/iiroj/breakpoint-observer/commit/15699084d6e8097b7586c26d5aca76c1b25a0306))
+
 ### [1.5.18](https://github.com/iiroj/breakpoint-observer/compare/v1.5.17...v1.5.18) (2019-11-24)
 
 ### [1.5.17](https://github.com/iiroj/breakpoint-observer/compare/v1.5.16...v1.5.17) (2019-09-25)
